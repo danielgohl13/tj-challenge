@@ -1,7 +1,9 @@
 module.exports = (sequelize, Sequelize, Endereco) => {
     const Pessoa = sequelize.define("pessoa", {
         id: {
-            type: Sequelize.INTEGER
+            type: Sequelize.INTEGER,
+            primaryKey: true,
+            autoIncrement: true
         },
 
         nome: {
@@ -9,7 +11,11 @@ module.exports = (sequelize, Sequelize, Endereco) => {
         },
         
         address_id: {
-            type: Endereco.id
+            type: Sequelize.INTEGER,
+            reference: {
+                model: 'endereco',
+                key: 'id'
+            }
         },
 
         tipo: {
